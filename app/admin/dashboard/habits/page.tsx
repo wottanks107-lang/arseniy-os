@@ -30,7 +30,6 @@ export default function HabitsPage() {
   const [today, setToday] = useState("");
 
   useEffect(() => {
-    // Устанавливаем сегодняшнюю дату только на клиенте
     setToday(new Date().toISOString().split("T")[0]);
     fetchHabits();
   }, []);
