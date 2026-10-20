@@ -27,8 +27,11 @@ export default function HabitsPage() {
   const [loading, setLoading] = useState(true);
   const [newTitle, setNewTitle] = useState("");
   const [isAdding, setIsAdding] = useState(false);
+  const [today, setToday] = useState("");
 
   useEffect(() => {
+    // Устанавливаем сегодняшнюю дату только на клиенте
+    setToday(new Date().toISOString().split("T")[0]);
     fetchHabits();
   }, []);
 
@@ -63,7 +66,6 @@ export default function HabitsPage() {
   };
 
   const toggleToday = async (habit: Habit) => {
-    const today = new Date().toISOString().split("T")[0];
     const dates = habit.completed_dates || [];
     const isCompletedToday = dates.includes(today);
 
@@ -101,8 +103,6 @@ export default function HabitsPage() {
     }
     return streak;
   };
-
-  const today = new Date().toISOString().split("T")[0];
 
   return (
     <div className="min-h-screen bg-[#0a0a0a]">
